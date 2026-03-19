@@ -14,46 +14,46 @@ import (
 type listWorkspacesInput struct{}
 
 type createWorkspaceInput struct {
-	Name        string `json:"name" jsonschema:"required,description=Workspace name"`
-	Slug        string `json:"slug" jsonschema:"required,description=Workspace URL slug"`
-	Description string `json:"description,omitempty" jsonschema:"description=Workspace description"`
+	Name        string `json:"name" jsonschema:"Workspace name"`
+	Slug        string `json:"slug" jsonschema:"Workspace URL slug"`
+	Description string `json:"description,omitempty" jsonschema:"Workspace description"`
 }
 
 type getWorkspaceInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Workspace public ID"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Workspace public ID"`
 }
 
 type updateWorkspaceInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Workspace public ID"`
-	Name              string `json:"name,omitempty" jsonschema:"description=New workspace name"`
-	Description       string `json:"description,omitempty" jsonschema:"description=New workspace description"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Workspace public ID"`
+	Name              string `json:"name,omitempty" jsonschema:"New workspace name"`
+	Description       string `json:"description,omitempty" jsonschema:"New workspace description"`
 }
 
 type deleteWorkspaceInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Workspace public ID"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Workspace public ID"`
 }
 
 type getWorkspaceBySlugInput struct {
-	Slug string `json:"slug" jsonschema:"required,description=Workspace URL slug"`
+	Slug string `json:"slug" jsonschema:"Workspace URL slug"`
 }
 
 type checkWorkspaceSlugInput struct {
-	Slug string `json:"slug" jsonschema:"required,description=Slug to check for availability"`
+	Slug string `json:"slug" jsonschema:"Slug to check for availability"`
 }
 
 type searchWorkspaceInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Workspace public ID"`
-	Query             string `json:"query" jsonschema:"required,description=Search query string"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Workspace public ID"`
+	Query             string `json:"query" jsonschema:"Search query string"`
 }
 
 type inviteMemberInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Workspace public ID"`
-	Email             string `json:"email" jsonschema:"required,description=Email address to invite"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Workspace public ID"`
+	Email             string `json:"email" jsonschema:"Email address to invite"`
 }
 
 type removeMemberInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Workspace public ID"`
-	MemberPublicId    string `json:"memberPublicId" jsonschema:"required,description=Member public ID to remove"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Workspace public ID"`
+	MemberPublicId    string `json:"memberPublicId" jsonschema:"Member public ID to remove"`
 }
 
 // --- Handlers ---

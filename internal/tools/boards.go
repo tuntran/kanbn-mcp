@@ -12,36 +12,36 @@ import (
 // --- Input structs ---
 
 type listBoardsInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Public ID of the workspace"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Public ID of the workspace"`
 }
 
 type createBoardInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Public ID of the workspace"`
-	Name              string `json:"name" jsonschema:"required,description=Board name"`
-	Slug              string `json:"slug" jsonschema:"required,description=Board URL slug"`
-	Description       string `json:"description,omitempty" jsonschema:"description=Board description"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Public ID of the workspace"`
+	Name              string `json:"name" jsonschema:"Board name"`
+	Slug              string `json:"slug" jsonschema:"Board URL slug"`
+	Description       string `json:"description,omitempty" jsonschema:"Board description"`
 }
 
 type getBoardInput struct {
-	BoardPublicId string `json:"boardPublicId" jsonschema:"required,description=Board public ID"`
+	BoardPublicId string `json:"boardPublicId" jsonschema:"Board public ID"`
 }
 
 type updateBoardInput struct {
-	BoardPublicId string `json:"boardPublicId" jsonschema:"required,description=Board public ID"`
-	Name          string `json:"name,omitempty" jsonschema:"description=New board name"`
-	Description   string `json:"description,omitempty" jsonschema:"description=New board description"`
+	BoardPublicId string `json:"boardPublicId" jsonschema:"Board public ID"`
+	Name          string `json:"name,omitempty" jsonschema:"New board name"`
+	Description   string `json:"description,omitempty" jsonschema:"New board description"`
 }
 
 type deleteBoardInput struct {
-	BoardPublicId string `json:"boardPublicId" jsonschema:"required,description=Board public ID"`
+	BoardPublicId string `json:"boardPublicId" jsonschema:"Board public ID"`
 }
 
 type getBoardBySlugInput struct {
-	Slug string `json:"slug" jsonschema:"required,description=Board URL slug"`
+	Slug string `json:"slug" jsonschema:"Board URL slug"`
 }
 
 type checkBoardSlugInput struct {
-	Slug string `json:"slug" jsonschema:"required,description=Slug to check for availability"`
+	Slug string `json:"slug" jsonschema:"Slug to check for availability"`
 }
 
 // --- Handlers ---

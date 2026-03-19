@@ -11,21 +11,21 @@ import (
 // --- Input structs ---
 
 type generatePresignedURLInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	Filename     string `json:"filename" jsonschema:"required,description=File name (1-255 characters)"`
-	ContentType  string `json:"contentType" jsonschema:"required,description=MIME type (e.g. image/png)"`
-	Size         int64  `json:"size" jsonschema:"required,description=File size in bytes (max 52428800)"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	Filename     string `json:"filename" jsonschema:"File name (1-255 characters)"`
+	ContentType  string `json:"contentType" jsonschema:"MIME type (e.g. image/png)"`
+	Size         int64  `json:"size" jsonschema:"File size in bytes (max 52428800)"`
 }
 
 type confirmAttachmentInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	Key          string `json:"key" jsonschema:"required,description=Upload key returned from generate_presigned_url"`
-	Filename     string `json:"filename" jsonschema:"required,description=File name"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	Key          string `json:"key" jsonschema:"Upload key returned from generate_presigned_url"`
+	Filename     string `json:"filename" jsonschema:"File name"`
 }
 
 type deleteAttachmentInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	AttachmentId string `json:"attachmentId" jsonschema:"required,description=Attachment ID"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	AttachmentId string `json:"attachmentId" jsonschema:"Attachment ID"`
 }
 
 // --- Handlers ---

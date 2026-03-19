@@ -11,11 +11,11 @@ import (
 // --- Input structs ---
 
 type inviteLinkInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Workspace public ID"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Workspace public ID"`
 }
 
 type inviteCodeInput struct {
-	InviteCode string `json:"inviteCode" jsonschema:"required,description=Invite link code"`
+	InviteCode string `json:"inviteCode" jsonschema:"Invite link code"`
 }
 
 // --- Handlers ---

@@ -11,17 +11,17 @@ import (
 // --- Input structs ---
 
 type createListInput struct {
-	BoardPublicId string `json:"boardPublicId" jsonschema:"required,description=Public ID of the board"`
-	Name          string `json:"name" jsonschema:"required,description=List name"`
+	BoardPublicId string `json:"boardPublicId" jsonschema:"Public ID of the board"`
+	Name          string `json:"name" jsonschema:"List name"`
 }
 
 type updateListInput struct {
-	ListPublicId string `json:"listPublicId" jsonschema:"required,description=List public ID"`
-	Name         string `json:"name" jsonschema:"required,description=New list name"`
+	ListPublicId string `json:"listPublicId" jsonschema:"List public ID"`
+	Name         string `json:"name" jsonschema:"New list name"`
 }
 
 type deleteListInput struct {
-	ListPublicId string `json:"listPublicId" jsonschema:"required,description=List public ID"`
+	ListPublicId string `json:"listPublicId" jsonschema:"List public ID"`
 }
 
 // --- Handlers ---

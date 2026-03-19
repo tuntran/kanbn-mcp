@@ -12,8 +12,8 @@ import (
 type getUserInput struct{}
 
 type updateUserInput struct {
-	Name  string `json:"name,omitempty" jsonschema:"description=Display name"`
-	Image string `json:"image,omitempty" jsonschema:"description=Profile image URL"`
+	Name  string `json:"name,omitempty" jsonschema:"Display name"`
+	Image string `json:"image,omitempty" jsonschema:"Profile image URL"`
 }
 
 // --- Handlers ---

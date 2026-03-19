@@ -11,89 +11,89 @@ import (
 // --- Input structs ---
 
 type createCardInput struct {
-	Title           string   `json:"title" jsonschema:"required,description=Card title"`
-	ListPublicId    string   `json:"listPublicId" jsonschema:"required,description=List to place the card in"`
-	Position        string   `json:"position" jsonschema:"required,description=Position in list: start or end"`
-	Description     string   `json:"description,omitempty" jsonschema:"description=Card description (markdown supported)"`
-	DueDate         string   `json:"dueDate,omitempty" jsonschema:"description=Due date in ISO 8601 format (e.g. 2026-12-31)"`
-	LabelPublicIds  []string `json:"labelPublicIds,omitempty" jsonschema:"description=Label public IDs to assign"`
-	MemberPublicIds []string `json:"memberPublicIds,omitempty" jsonschema:"description=Member public IDs to assign"`
+	Title           string   `json:"title" jsonschema:"Card title"`
+	ListPublicId    string   `json:"listPublicId" jsonschema:"List to place the card in"`
+	Position        string   `json:"position" jsonschema:"Position in list: start or end"`
+	Description     string   `json:"description,omitempty" jsonschema:"Card description (markdown supported)"`
+	DueDate         string   `json:"dueDate,omitempty" jsonschema:"Due date in ISO 8601 format (e.g. 2026-12-31)"`
+	LabelPublicIds  []string `json:"labelPublicIds,omitempty" jsonschema:"Label public IDs to assign"`
+	MemberPublicIds []string `json:"memberPublicIds,omitempty" jsonschema:"Member public IDs to assign"`
 }
 
 type getCardInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
 }
 
 type updateCardInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	Title        string `json:"title,omitempty" jsonschema:"description=New title"`
-	Description  string `json:"description,omitempty" jsonschema:"description=New description"`
-	DueDate      string `json:"dueDate,omitempty" jsonschema:"description=New due date (ISO 8601)"`
-	ListPublicId string `json:"listPublicId,omitempty" jsonschema:"description=Move card to this list"`
-	Position     *int   `json:"position,omitempty" jsonschema:"description=New position index in the list"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	Title        string `json:"title,omitempty" jsonschema:"New title"`
+	Description  string `json:"description,omitempty" jsonschema:"New description"`
+	DueDate      string `json:"dueDate,omitempty" jsonschema:"New due date (ISO 8601)"`
+	ListPublicId string `json:"listPublicId,omitempty" jsonschema:"Move card to this list"`
+	Position     *int   `json:"position,omitempty" jsonschema:"New position index in the list"`
 }
 
 type deleteCardInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
 }
 
 type addCommentInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	Content      string `json:"content" jsonschema:"required,description=Comment text"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	Content      string `json:"content" jsonschema:"Comment text"`
 }
 
 type updateCommentInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	CommentId    string `json:"commentId" jsonschema:"required,description=Comment ID"`
-	Content      string `json:"content" jsonschema:"required,description=New comment text"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	CommentId    string `json:"commentId" jsonschema:"Comment ID"`
+	Content      string `json:"content" jsonschema:"New comment text"`
 }
 
 type deleteCommentInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	CommentId    string `json:"commentId" jsonschema:"required,description=Comment ID"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	CommentId    string `json:"commentId" jsonschema:"Comment ID"`
 }
 
 type cardLabelInput struct {
-	CardPublicId  string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	LabelPublicId string `json:"labelPublicId" jsonschema:"required,description=Label public ID"`
+	CardPublicId  string `json:"cardPublicId" jsonschema:"Card public ID"`
+	LabelPublicId string `json:"labelPublicId" jsonschema:"Label public ID"`
 }
 
 type cardMemberInput struct {
-	CardPublicId   string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	MemberPublicId string `json:"memberPublicId" jsonschema:"required,description=Member public ID"`
+	CardPublicId   string `json:"cardPublicId" jsonschema:"Card public ID"`
+	MemberPublicId string `json:"memberPublicId" jsonschema:"Member public ID"`
 }
 
 type getCardActivitiesInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	Page         *int   `json:"page,omitempty" jsonschema:"description=Page number for pagination"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	Page         *int   `json:"page,omitempty" jsonschema:"Page number for pagination"`
 }
 
 type addChecklistInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	Name         string `json:"name" jsonschema:"required,description=Checklist name"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	Name         string `json:"name" jsonschema:"Checklist name"`
 }
 
 type deleteChecklistInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	ChecklistId  string `json:"checklistId" jsonschema:"required,description=Checklist ID"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	ChecklistId  string `json:"checklistId" jsonschema:"Checklist ID"`
 }
 
 type addChecklistItemInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	ChecklistId  string `json:"checklistId" jsonschema:"required,description=Checklist ID"`
-	Name         string `json:"name" jsonschema:"required,description=Item name"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	ChecklistId  string `json:"checklistId" jsonschema:"Checklist ID"`
+	Name         string `json:"name" jsonschema:"Item name"`
 }
 
 type updateChecklistItemInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	ItemId       string `json:"itemId" jsonschema:"required,description=Checklist item ID"`
-	Name         string `json:"name,omitempty" jsonschema:"description=New item name"`
-	Completed    *bool  `json:"completed,omitempty" jsonschema:"description=Mark as completed (true) or not (false)"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	ItemId       string `json:"itemId" jsonschema:"Checklist item ID"`
+	Name         string `json:"name,omitempty" jsonschema:"New item name"`
+	Completed    *bool  `json:"completed,omitempty" jsonschema:"Mark as completed (true) or not (false)"`
 }
 
 type deleteChecklistItemInput struct {
-	CardPublicId string `json:"cardPublicId" jsonschema:"required,description=Card public ID"`
-	ItemId       string `json:"itemId" jsonschema:"required,description=Checklist item ID"`
+	CardPublicId string `json:"cardPublicId" jsonschema:"Card public ID"`
+	ItemId       string `json:"itemId" jsonschema:"Checklist item ID"`
 }
 
 // --- Handlers ---

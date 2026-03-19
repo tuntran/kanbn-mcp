@@ -11,23 +11,23 @@ import (
 // --- Input structs ---
 
 type createLabelInput struct {
-	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"required,description=Public ID of the workspace"`
-	Name              string `json:"name" jsonschema:"required,description=Label name"`
-	ColourCode        string `json:"colourCode,omitempty" jsonschema:"description=Hex colour code (e.g. #FF5733)"`
+	WorkspacePublicId string `json:"workspacePublicId" jsonschema:"Public ID of the workspace"`
+	Name              string `json:"name" jsonschema:"Label name"`
+	ColourCode        string `json:"colourCode,omitempty" jsonschema:"Hex colour code (e.g. #FF5733)"`
 }
 
 type getLabelInput struct {
-	LabelPublicId string `json:"labelPublicId" jsonschema:"required,description=Label public ID"`
+	LabelPublicId string `json:"labelPublicId" jsonschema:"Label public ID"`
 }
 
 type updateLabelInput struct {
-	LabelPublicId string `json:"labelPublicId" jsonschema:"required,description=Label public ID"`
-	Name          string `json:"name,omitempty" jsonschema:"description=New label name"`
-	ColourCode    string `json:"colourCode,omitempty" jsonschema:"description=New hex colour code"`
+	LabelPublicId string `json:"labelPublicId" jsonschema:"Label public ID"`
+	Name          string `json:"name,omitempty" jsonschema:"New label name"`
+	ColourCode    string `json:"colourCode,omitempty" jsonschema:"New hex colour code"`
 }
 
 type deleteLabelInput struct {
-	LabelPublicId string `json:"labelPublicId" jsonschema:"required,description=Label public ID"`
+	LabelPublicId string `json:"labelPublicId" jsonschema:"Label public ID"`
 }
 
 // --- Handlers ---
