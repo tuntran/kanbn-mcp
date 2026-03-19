@@ -13,6 +13,7 @@ MCP (Model Context Protocol) server for [Kan.bn](https://kan.bn) — exposes 51 
 |----------|----------|-------------|
 | `KAN_API_KEY` | ✓ | API key from Kan.bn account settings |
 | `KAN_BASE_URL` | ✓ | Base URL e.g. `https://app.kan.bn/api/v1` |
+| `MCP_HTTP_ADDR` | — | HTTP listen address (e.g. `:8080`). If set, serves Streamable HTTP for remote AI agents. If unset, uses stdio (Claude Desktop). Defaults to `:8080` in Docker image. |
 
 ## Build
 
@@ -22,12 +23,26 @@ cd kanbn-mcp
 go build -o kanbn-mcp ./cmd/server
 ```
 
-## Docker
+## Docker / Coolify
 
 ```bash
 docker build -t kanbn-mcp .
-docker run -e KAN_API_KEY=your_key -e KAN_BASE_URL=https://app.kan.bn/api/v1 kanbn-mcp
+
+# Streamable HTTP (remote AI agents, Coolify) — default port 8080
+docker run -p 8080:8080 \
+  -e KAN_API_KEY=your_key \
+  -e KAN_BASE_URL=https://app.kan.bn/api/v1 \
+  kanbn-mcp
+
+# stdio (local only — override MCP_HTTP_ADDR to empty)
+docker run -i \
+  -e KAN_API_KEY=your_key \
+  -e KAN_BASE_URL=https://app.kan.bn/api/v1 \
+  -e MCP_HTTP_ADDR="" \
+  kanbn-mcp
 ```
+
+**Coolify:** Set domain + port `8080`. Add env vars `KAN_API_KEY` và `KAN_BASE_URL`. MCP endpoint: `https://your-domain/mcp`.
 
 ## Usage with Claude Desktop
 

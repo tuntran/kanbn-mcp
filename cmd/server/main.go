@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
@@ -30,8 +31,21 @@ func main() {
 
 	tools.RegisterAll(server, client)
 
-	log.Printf("kanbn-mcp server starting (base URL: %s)", baseURL)
+	// MCP_HTTP_ADDR: if set, serve over Streamable HTTP (for remote AI agents / Coolify).
+	// If not set, fall back to stdio (for local MCP clients like Claude Desktop).
+	httpAddr := os.Getenv("MCP_HTTP_ADDR")
+	if httpAddr != "" {
+		log.Printf("kanbn-mcp HTTP server listening on %s", httpAddr)
+		handler := mcp.NewStreamableHTTPHandler(func(*http.Request) *mcp.Server {
+			return server
+		}, nil)
+		if err := http.ListenAndServe(httpAddr, handler); err != nil {
+			log.Fatalf("http server error: %v", err)
+		}
+		return
+	}
 
+	log.Printf("kanbn-mcp stdio server starting (base URL: %s)", baseURL)
 	if err := server.Run(context.Background(), &mcp.StdioTransport{}); err != nil {
 		log.Fatalf("server error: %v", err)
 	}
