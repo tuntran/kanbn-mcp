@@ -24,6 +24,10 @@ type deleteListInput struct {
 	ListPublicId string `json:"listPublicId" jsonschema:"List public ID"`
 }
 
+type getCardsByListInput struct {
+	ListPublicId string `json:"listPublicId" jsonschema:"Public ID of the list to retrieve cards from"`
+}
+
 // --- Handlers ---
 
 func handleCreateList(c *kan.Client) func(context.Context, *mcp.CallToolRequest, createListInput) (*mcp.CallToolResult, any, error) {
@@ -61,10 +65,21 @@ func handleDeleteList(c *kan.Client) func(context.Context, *mcp.CallToolRequest,
 	}
 }
 
+func handleGetCardsByList(c *kan.Client) func(context.Context, *mcp.CallToolRequest, getCardsByListInput) (*mcp.CallToolResult, any, error) {
+	return func(ctx context.Context, _ *mcp.CallToolRequest, input getCardsByListInput) (*mcp.CallToolResult, any, error) {
+		data, err := c.Get(ctx, fmt.Sprintf("/lists/%s/cards", input.ListPublicId))
+		if err != nil {
+			return nil, nil, err
+		}
+		return textResult(data), nil, nil
+	}
+}
+
 // --- Registration ---
 
 func registerLists(s *mcp.Server, c *kan.Client) {
 	mcp.AddTool(s, &mcp.Tool{Name: "create_list", Description: "Create a new list in a board"}, handleCreateList(c))
 	mcp.AddTool(s, &mcp.Tool{Name: "update_list", Description: "Update a list name"}, handleUpdateList(c))
 	mcp.AddTool(s, &mcp.Tool{Name: "delete_list", Description: "Delete a list by its public ID"}, handleDeleteList(c))
+	mcp.AddTool(s, &mcp.Tool{Name: "get_cards_by_list", Description: "Get all cards in a list by its public ID"}, handleGetCardsByList(c))
 }
